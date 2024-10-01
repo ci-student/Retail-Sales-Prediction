@@ -5,7 +5,7 @@ RUN echo "CI version from base"
 ### Python ###
 USER gitpod
 RUN sudo install-packages python3-pip
-ENV PYTHON_VERSION 3.10.13
+ENV PYTHON_VERSION 3.9.20
 
 ENV PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
 RUN curl -fsSL https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash \
