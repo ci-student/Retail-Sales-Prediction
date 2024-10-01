@@ -1,53 +1,69 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Retail Sales Prediction Project
 
-## Template Instructions
+## Dataset Content and Explanation
 
-Welcome,
+This project uses a retail dataset sourced from Kaggle, containing historical sales data for 45 stores. The dataset consists of three main tables:
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+- **Stores**: Provides anonymized information about each store, including store type and size.
+- **Features**: Contains store, department, and regional data like temperature, fuel prices, markdowns, CPI, unemployment, and whether the week includes a major holiday.
+- **Sales**: Historical weekly sales data from 2010-02-05 to 2012-11-01, including store number, department number, weekly sales, and holiday flags.
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+## Business Requirements
 
-## How to use this repo
+1. **Predict Department Sales**: The main goal is to predict department-wide sales for each store in the following year.
+2. **Analyze Markdown Effects**: Evaluate the impact of markdowns on sales, particularly during holiday weeks.
+3. **Provide Strategic Recommendations**: Offer actionable insights to maximize business impact, especially around key holidays such as the Super Bowl, Labor Day, Thanksgiving, and Christmas.
 
-1. Use this template to create your GitHub project repo
+## Hypothesis and Validation
 
-1. Log into your cloud IDE with your GitHub account.
+### Hypothesis 1:
+Markdown events before holidays have a significant positive effect on sales.
+- **Validation**: Use time series analysis and hypothesis testing (e.g., t-tests) to compare sales during markdown periods vs. non-markdown periods.
 
-1. On your Dashboard, click on the New Workspace button
+### Hypothesis 2:
+Sales increase in stores with larger size or specific store types.
+- **Validation**: Build machine learning models incorporating store size and type as features to assess their impact on sales predictions.
 
-1. Paste in the URL you copied from GitHub earlier
+## Mapping Business Requirements to Visualizations and ML Tasks
 
-1. Click Create
+- **Business Requirement 1**: Predicting department-wise sales maps to building predictive models (time series forecasting, regression models).
+- **Business Requirement 2**: Visualizations showing markdown effect on sales during holiday periods, comparing markdown vs. non-markdown sales.
+- **ML Tasks**: Train models (e.g., Random Forest, Gradient Boosting) to predict sales and understand feature importance related to markdowns, CPI, and holiday effects.
 
-1. Wait for the workspace to open. This can take a few minutes.
+## Machine Learning Business Case
 
-1. Open a new terminal and `pip3 install -r requirements.txt`
+- **Objective**: Develop a model that predicts future sales, enabling the company to optimize inventory and promotional strategies.
+- **Approach**: Leverage historical data on markdowns, store features, and past sales to train machine learning models (e.g., Regression, Random Forest) for accurate sales prediction. Feature engineering will focus on creating holiday indicators, lag variables for sales, and markdown imputation.
 
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
+## Dashboard Design
 
-1. Click the kernel button and choose Python Environments.
+The project will deploy an interactive Tableau Public dashboard showcasing:
+- Sales trends across stores and departments.
+- Markdown effects on holiday and non-holiday sales.
+- Sales predictions for future periods, highlighting high-sales weeks for inventory planning.
 
-Note that the kernel says Python 3.12.2 as it inherits from the workspace, so it will be Python-3.12.2 as installed by our template. To confirm this, you can use `! python --version` in a notebook code cell.
+## Unfixed Bugs
 
-## Cloud IDE Reminders
+No known bugs at this time. Continuous testing and model validation will ensure robust performance.
 
-To log into the Heroku toolbelt CLI:
+## Deployment
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The machine learning model and Tableau dashboard will be deployed using:
+- **Tableau Public** for visualizing trends and markdown effects.
+- **Jupyter Notebooks** for data handling and analysis.
+- GitHub will host the project and include detailed documentation.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Main Data Analysis and Machine Learning Libraries
 
-* Set the runtime.txt Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
+- **Data Manipulation**: `Pandas`, `NumPy`
+- **Data Visualization**: `Seaborn`, `Matplotlib`, `Plotly`, `Tableau Public`
+- **Machine Learning**: `Scikit-learn`, `Random Forest`, `Statsmodels`
+- **Deployment**: `Flask`, `Heroku` or similar cloud service
 
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+## Credits
+
+This project is based on the retail dataset provided by Manjeet Singh on Kaggle.
+
+## Acknowledgements (optional)
+
+A special thanks to the Kaggle community for data-sharing and providing an environment for developing data analysis and machine learning projects.
