@@ -26,7 +26,7 @@ def weekly_sales_line(df):
     plt.figure(figsize=(10, 6))
     
     # Create the line plot with seaborn and add a trendline
-    sns.lineplot(data=sales_by_month, x='Date', y='Weekly_Sales', label='Weekly Sales')
+    sns.lineplot(data=sales_by_month, x='Date_Num', y='Weekly_Sales', label='Weekly Sales')
     sns.regplot(data=sales_by_month, x='Date_Num', y='Weekly_Sales', scatter=False, label='Trendline', color='red')
     
     plt.title('Weekly Sales with Trendline')
@@ -34,6 +34,28 @@ def weekly_sales_line(df):
     plt.ylabel('Sales')
     plt.legend()
     st.pyplot(plt)
+
+def markdown_multiline(df):
+    st.title('Markdown Multiline Plot')
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['Month'] = df['Date'].dt.strftime('%Y-%m')
+    
+    # Group by month and sum the values for each Markdown column
+    markdown_cols = ['MarkDown1', 'MarkDown2', 'MarkDown3', 'MarkDown4', 'MarkDown5']
+    markdown_by_month = df.groupby('Month')[markdown_cols].sum().reset_index()
+    
+    plt.figure(figsize=(12, 8))
+    
+    for col in markdown_cols:
+        sns.lineplot(data=markdown_by_month, x='Month', y=col, label=col)
+    
+    plt.title('Markdown Values Over Time')
+    plt.xlabel('Month')
+    plt.ylabel('Markdown Value')
+    plt.xticks(rotation=45)
+    plt.legend()
+    st.pyplot(plt)
+
 
 def store_performance():
     st.title('Dashboard')
@@ -54,3 +76,4 @@ def store_performance():
     df_filter = df.loc[store_filter & year_filter]
     weekly_sales_by_dept(df_filter)
     weekly_sales_line(df_filter)
+    markdown_multiline(df_filter)
